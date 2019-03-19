@@ -1,0 +1,636 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9C19686F222CCDB500B90A86 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C19686E222CCDB500B90A86 /* AppDelegate.m */; };
+		9C196872222CCDB500B90A86 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C196871222CCDB500B90A86 /* ViewController.m */; };
+		9C196875222CCDB500B90A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C196873222CCDB500B90A86 /* Main.storyboard */; };
+		9C196877222CCDB600B90A86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C196876222CCDB600B90A86 /* Assets.xcassets */; };
+		9C19687A222CCDB600B90A86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C196878222CCDB600B90A86 /* LaunchScreen.storyboard */; };
+		9C19687D222CCDB600B90A86 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C19687C222CCDB600B90A86 /* main.m */; };
+		9C196887222CCDB600B90A86 /* LHTopScrollBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C196886222CCDB600B90A86 /* LHTopScrollBarTests.m */; };
+		9C196892222CCDB600B90A86 /* LHTopScrollBarUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C196891222CCDB600B90A86 /* LHTopScrollBarUITests.m */; };
+		9C1968A1222CCDF300B90A86 /* LHTopScrollBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1968A0222CCDF300B90A86 /* LHTopScrollBarVC.m */; };
+		9C53EFF6222E62F60036AAD6 /* LHTopScrollBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C53EFF5222E62F60036AAD6 /* LHTopScrollBar.m */; };
+		9C53EFFF222E65E30036AAD6 /* LHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C53EFFE222E65E30036AAD6 /* LHButton.m */; };
+		9C5772CA2239FF50008BA4C1 /* LHScrollBarCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5772C92239FF50008BA4C1 /* LHScrollBarCellModel.m */; };
+		9CF140772239EC2500288FE8 /* LHTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF140762239EC2500288FE8 /* LHTouchView.m */; };
+		9CF1407A2239F12D00288FE8 /* LHTopScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF140792239F12D00288FE8 /* LHTopScrollCell.m */; };
+		9CF140802239FC4500288FE8 /* LHTopSrollCellLayoutW.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF1407F2239FC4500288FE8 /* LHTopSrollCellLayoutW.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9C196883222CCDB600B90A86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C196862222CCDB500B90A86 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C196869222CCDB500B90A86;
+			remoteInfo = LHTopScrollBar;
+		};
+		9C19688E222CCDB600B90A86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C196862222CCDB500B90A86 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C196869222CCDB500B90A86;
+			remoteInfo = LHTopScrollBar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9C19686A222CCDB500B90A86 /* LHTopScrollBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LHTopScrollBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C19686D222CCDB500B90A86 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9C19686E222CCDB500B90A86 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9C196870222CCDB500B90A86 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9C196871222CCDB500B90A86 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9C196874222CCDB500B90A86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9C196876222CCDB600B90A86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9C196879222CCDB600B90A86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9C19687B222CCDB600B90A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C19687C222CCDB600B90A86 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9C196882222CCDB600B90A86 /* LHTopScrollBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LHTopScrollBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C196886222CCDB600B90A86 /* LHTopScrollBarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHTopScrollBarTests.m; sourceTree = "<group>"; };
+		9C196888222CCDB600B90A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C19688D222CCDB600B90A86 /* LHTopScrollBarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LHTopScrollBarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C196891222CCDB600B90A86 /* LHTopScrollBarUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHTopScrollBarUITests.m; sourceTree = "<group>"; };
+		9C196893222CCDB600B90A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C19689F222CCDF300B90A86 /* LHTopScrollBarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHTopScrollBarVC.h; sourceTree = "<group>"; };
+		9C1968A0222CCDF300B90A86 /* LHTopScrollBarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHTopScrollBarVC.m; sourceTree = "<group>"; };
+		9C53EFF4222E62F60036AAD6 /* LHTopScrollBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHTopScrollBar.h; sourceTree = "<group>"; };
+		9C53EFF5222E62F60036AAD6 /* LHTopScrollBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHTopScrollBar.m; sourceTree = "<group>"; };
+		9C53EFFD222E65E30036AAD6 /* LHButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHButton.h; sourceTree = "<group>"; };
+		9C53EFFE222E65E30036AAD6 /* LHButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHButton.m; sourceTree = "<group>"; };
+		9C5772C82239FF50008BA4C1 /* LHScrollBarCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHScrollBarCellModel.h; sourceTree = "<group>"; };
+		9C5772C92239FF50008BA4C1 /* LHScrollBarCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHScrollBarCellModel.m; sourceTree = "<group>"; };
+		9CF140752239EC2500288FE8 /* LHTouchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHTouchView.h; sourceTree = "<group>"; };
+		9CF140762239EC2500288FE8 /* LHTouchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHTouchView.m; sourceTree = "<group>"; };
+		9CF140782239F12D00288FE8 /* LHTopScrollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHTopScrollCell.h; sourceTree = "<group>"; };
+		9CF140792239F12D00288FE8 /* LHTopScrollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHTopScrollCell.m; sourceTree = "<group>"; };
+		9CF1407E2239FC4500288FE8 /* LHTopSrollCellLayoutW.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHTopSrollCellLayoutW.h; sourceTree = "<group>"; };
+		9CF1407F2239FC4500288FE8 /* LHTopSrollCellLayoutW.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHTopSrollCellLayoutW.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C196867222CCDB500B90A86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C19687F222CCDB600B90A86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C19688A222CCDB600B90A86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9C196861222CCDB500B90A86 = {
+			isa = PBXGroup;
+			children = (
+				9C19686C222CCDB500B90A86 /* LHTopScrollBar */,
+				9C196885222CCDB600B90A86 /* LHTopScrollBarTests */,
+				9C196890222CCDB600B90A86 /* LHTopScrollBarUITests */,
+				9C19686B222CCDB500B90A86 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9C19686B222CCDB500B90A86 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C19686A222CCDB500B90A86 /* LHTopScrollBar.app */,
+				9C196882222CCDB600B90A86 /* LHTopScrollBarTests.xctest */,
+				9C19688D222CCDB600B90A86 /* LHTopScrollBarUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C19686C222CCDB500B90A86 /* LHTopScrollBar */ = {
+			isa = PBXGroup;
+			children = (
+				9CB7A0222239062A0091D661 /* LHTopCrollbarTool */,
+				9C19686D222CCDB500B90A86 /* AppDelegate.h */,
+				9C19686E222CCDB500B90A86 /* AppDelegate.m */,
+				9C196870222CCDB500B90A86 /* ViewController.h */,
+				9C196871222CCDB500B90A86 /* ViewController.m */,
+				9C196873222CCDB500B90A86 /* Main.storyboard */,
+				9C196876222CCDB600B90A86 /* Assets.xcassets */,
+				9C196878222CCDB600B90A86 /* LaunchScreen.storyboard */,
+				9C19687B222CCDB600B90A86 /* Info.plist */,
+				9C19687C222CCDB600B90A86 /* main.m */,
+			);
+			path = LHTopScrollBar;
+			sourceTree = "<group>";
+		};
+		9C196885222CCDB600B90A86 /* LHTopScrollBarTests */ = {
+			isa = PBXGroup;
+			children = (
+				9C196886222CCDB600B90A86 /* LHTopScrollBarTests.m */,
+				9C196888222CCDB600B90A86 /* Info.plist */,
+			);
+			path = LHTopScrollBarTests;
+			sourceTree = "<group>";
+		};
+		9C196890222CCDB600B90A86 /* LHTopScrollBarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9C196891222CCDB600B90A86 /* LHTopScrollBarUITests.m */,
+				9C196893222CCDB600B90A86 /* Info.plist */,
+			);
+			path = LHTopScrollBarUITests;
+			sourceTree = "<group>";
+		};
+		9CB7A0222239062A0091D661 /* LHTopCrollbarTool */ = {
+			isa = PBXGroup;
+			children = (
+				9C19689F222CCDF300B90A86 /* LHTopScrollBarVC.h */,
+				9C1968A0222CCDF300B90A86 /* LHTopScrollBarVC.m */,
+				9C53EFF4222E62F60036AAD6 /* LHTopScrollBar.h */,
+				9C53EFF5222E62F60036AAD6 /* LHTopScrollBar.m */,
+				9C5772C82239FF50008BA4C1 /* LHScrollBarCellModel.h */,
+				9C5772C92239FF50008BA4C1 /* LHScrollBarCellModel.m */,
+				9C53EFFD222E65E30036AAD6 /* LHButton.h */,
+				9C53EFFE222E65E30036AAD6 /* LHButton.m */,
+				9CF140752239EC2500288FE8 /* LHTouchView.h */,
+				9CF140762239EC2500288FE8 /* LHTouchView.m */,
+				9CF140782239F12D00288FE8 /* LHTopScrollCell.h */,
+				9CF140792239F12D00288FE8 /* LHTopScrollCell.m */,
+				9CF1407E2239FC4500288FE8 /* LHTopSrollCellLayoutW.h */,
+				9CF1407F2239FC4500288FE8 /* LHTopSrollCellLayoutW.m */,
+			);
+			path = LHTopCrollbarTool;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9C196869222CCDB500B90A86 /* LHTopScrollBar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C196896222CCDB600B90A86 /* Build configuration list for PBXNativeTarget "LHTopScrollBar" */;
+			buildPhases = (
+				9C196866222CCDB500B90A86 /* Sources */,
+				9C196867222CCDB500B90A86 /* Frameworks */,
+				9C196868222CCDB500B90A86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LHTopScrollBar;
+			productName = LHTopScrollBar;
+			productReference = 9C19686A222CCDB500B90A86 /* LHTopScrollBar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9C196881222CCDB600B90A86 /* LHTopScrollBarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C196899222CCDB600B90A86 /* Build configuration list for PBXNativeTarget "LHTopScrollBarTests" */;
+			buildPhases = (
+				9C19687E222CCDB600B90A86 /* Sources */,
+				9C19687F222CCDB600B90A86 /* Frameworks */,
+				9C196880222CCDB600B90A86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9C196884222CCDB600B90A86 /* PBXTargetDependency */,
+			);
+			name = LHTopScrollBarTests;
+			productName = LHTopScrollBarTests;
+			productReference = 9C196882222CCDB600B90A86 /* LHTopScrollBarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9C19688C222CCDB600B90A86 /* LHTopScrollBarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C19689C222CCDB600B90A86 /* Build configuration list for PBXNativeTarget "LHTopScrollBarUITests" */;
+			buildPhases = (
+				9C196889222CCDB600B90A86 /* Sources */,
+				9C19688A222CCDB600B90A86 /* Frameworks */,
+				9C19688B222CCDB600B90A86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9C19688F222CCDB600B90A86 /* PBXTargetDependency */,
+			);
+			name = LHTopScrollBarUITests;
+			productName = LHTopScrollBarUITests;
+			productReference = 9C19688D222CCDB600B90A86 /* LHTopScrollBarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C196862222CCDB500B90A86 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "李辉";
+				TargetAttributes = {
+					9C196869222CCDB500B90A86 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					9C196881222CCDB600B90A86 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 9C196869222CCDB500B90A86;
+					};
+					9C19688C222CCDB600B90A86 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 9C196869222CCDB500B90A86;
+					};
+				};
+			};
+			buildConfigurationList = 9C196865222CCDB500B90A86 /* Build configuration list for PBXProject "LHTopScrollBar" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9C196861222CCDB500B90A86;
+			productRefGroup = 9C19686B222CCDB500B90A86 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9C196869222CCDB500B90A86 /* LHTopScrollBar */,
+				9C196881222CCDB600B90A86 /* LHTopScrollBarTests */,
+				9C19688C222CCDB600B90A86 /* LHTopScrollBarUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9C196868222CCDB500B90A86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C19687A222CCDB600B90A86 /* LaunchScreen.storyboard in Resources */,
+				9C196877222CCDB600B90A86 /* Assets.xcassets in Resources */,
+				9C196875222CCDB500B90A86 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C196880222CCDB600B90A86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C19688B222CCDB600B90A86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C196866222CCDB500B90A86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CF140802239FC4500288FE8 /* LHTopSrollCellLayoutW.m in Sources */,
+				9C196872222CCDB500B90A86 /* ViewController.m in Sources */,
+				9C1968A1222CCDF300B90A86 /* LHTopScrollBarVC.m in Sources */,
+				9CF1407A2239F12D00288FE8 /* LHTopScrollCell.m in Sources */,
+				9CF140772239EC2500288FE8 /* LHTouchView.m in Sources */,
+				9C19687D222CCDB600B90A86 /* main.m in Sources */,
+				9C5772CA2239FF50008BA4C1 /* LHScrollBarCellModel.m in Sources */,
+				9C53EFFF222E65E30036AAD6 /* LHButton.m in Sources */,
+				9C53EFF6222E62F60036AAD6 /* LHTopScrollBar.m in Sources */,
+				9C19686F222CCDB500B90A86 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C19687E222CCDB600B90A86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C196887222CCDB600B90A86 /* LHTopScrollBarTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C196889222CCDB600B90A86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C196892222CCDB600B90A86 /* LHTopScrollBarUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9C196884222CCDB600B90A86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C196869222CCDB500B90A86 /* LHTopScrollBar */;
+			targetProxy = 9C196883222CCDB600B90A86 /* PBXContainerItemProxy */;
+		};
+		9C19688F222CCDB600B90A86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C196869222CCDB500B90A86 /* LHTopScrollBar */;
+			targetProxy = 9C19688E222CCDB600B90A86 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9C196873222CCDB500B90A86 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C196874222CCDB500B90A86 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9C196878222CCDB600B90A86 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C196879222CCDB600B90A86 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9C196894222CCDB600B90A86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9C196895222CCDB600B90A86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9C196897222CCDB600B90A86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L38C8NB92S;
+				INFOPLIST_FILE = LHTopScrollBar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lihui-12013.LHTopScrollBar123";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9C196898222CCDB600B90A86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L38C8NB92S;
+				INFOPLIST_FILE = LHTopScrollBar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lihui-12013.LHTopScrollBar123";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9C19689A222CCDB600B90A86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LHTopScrollBarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lihui-12013.LHTopScrollBarTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LHTopScrollBar.app/LHTopScrollBar";
+			};
+			name = Debug;
+		};
+		9C19689B222CCDB600B90A86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LHTopScrollBarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lihui-12013.LHTopScrollBarTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LHTopScrollBar.app/LHTopScrollBar";
+			};
+			name = Release;
+		};
+		9C19689D222CCDB600B90A86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LHTopScrollBarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lihui-12013.LHTopScrollBarUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LHTopScrollBar;
+			};
+			name = Debug;
+		};
+		9C19689E222CCDB600B90A86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LHTopScrollBarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lihui-12013.LHTopScrollBarUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LHTopScrollBar;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9C196865222CCDB500B90A86 /* Build configuration list for PBXProject "LHTopScrollBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C196894222CCDB600B90A86 /* Debug */,
+				9C196895222CCDB600B90A86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C196896222CCDB600B90A86 /* Build configuration list for PBXNativeTarget "LHTopScrollBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C196897222CCDB600B90A86 /* Debug */,
+				9C196898222CCDB600B90A86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C196899222CCDB600B90A86 /* Build configuration list for PBXNativeTarget "LHTopScrollBarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C19689A222CCDB600B90A86 /* Debug */,
+				9C19689B222CCDB600B90A86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C19689C222CCDB600B90A86 /* Build configuration list for PBXNativeTarget "LHTopScrollBarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C19689D222CCDB600B90A86 /* Debug */,
+				9C19689E222CCDB600B90A86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C196862222CCDB500B90A86 /* Project object */;
+}
