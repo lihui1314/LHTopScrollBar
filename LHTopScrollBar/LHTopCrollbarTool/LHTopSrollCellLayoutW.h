@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LHTopSrollCellLayoutW : NSObject
-@property(nonatomic,strong)NSAttributedString*attStr;
+@property(nonatomic,strong)NSMutableAttributedString*attStr;
 @property(nonatomic,assign)CGFloat cellWidth;
 @property(nonatomic,assign)CGRect cellRect;
 @property(nonatomic,assign)NSInteger cellIndex;
@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat zoom_left;
 @property(nonatomic,assign)CGFloat zoom_right;
 @property(nonatomic,assign)CGFloat start;
+
+@property(nonatomic,assign)CGFloat offx;//偏移量
 -(instancetype)initWithModel:(LHScrollBarCellModel*)model and:(NSInteger)index;
 @end
 

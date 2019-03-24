@@ -11,7 +11,8 @@
 //#define CellPadding 6
 NS_ASSUME_NONNULL_BEGIN
 @protocol LHTopScrollBarDelegate <NSObject>
--(void)lh_didSelectedTopbarCell:(NSInteger)index;
+-(void)lh_didClicktTopbarCell:(NSInteger)index;
+-(void)lh_didSeleCellAtIndex:(NSInteger)seletedIndex;//最终的选中目标
 @optional
 -(NSInteger)numberOfCells;
 -(NSString*)barTitle;
@@ -35,6 +36,7 @@ typedef NS_ENUM(NSInteger,LHTopScrollBarType){
 -(void)lh_reloadData;
 -(instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray*)array delegate:(id)delegate andType:(LHTopScrollBarType)type;
 -(void)lh_mainScrollDidScroll:(CGFloat)rate;
+-(void)lh_mainSCrollDidEndDecelerating:(NSInteger)index;
 @end
 
 NS_ASSUME_NONNULL_END

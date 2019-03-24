@@ -8,11 +8,15 @@
 #define topH = 40
 #define lineMinWidth 35
 #define CellPadding 25
+#define SeletedCellLabColor [UIColor redColor]
 #import "LHTopScrollBar.h"
 #import "LHButton.h"
 #import "LHScrollBarCellModel.h"
 #import "LHTopSrollCellLayoutW.h"
-@implementation LHTopScrollBar
+@implementation LHTopScrollBar{
+    CGFloat _flagIndex;
+    NSMutableArray*_cellArray;
+}
 -(instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray*)array delegate:(id)delegate andType:(LHTopScrollBarType)type{
     self = [super initWithFrame:frame];
     if (self) {
@@ -21,17 +25,19 @@
         self.preSeletedIndex = 0;
         self.selectedIndex = 0;
         self.classInfoArray = [self lh_layOutArrray:array];
+        _cellArray = [NSMutableArray array];
         [self addAllSubViews:frame];
     }
     return self;
 }
 
 -(void)addAllSubViews:(CGRect)frame{
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-    _scrollView.delegate = self;
-    _scrollView.contentSize = CGSizeMake([self lh_contentSizeWidth], frame.size.height);
-    _scrollView.showsHorizontalScrollIndicator = NO;
-    _scrollView.bounces = NO;
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+    self.scrollView.delegate = self;
+    self.scrollView.contentSize = CGSizeMake([self lh_contentSizeWidth], frame.size.height);
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.bounces = NO;
+    [_cellArray removeAllObjects];
     CGFloat x =0;
     for (NSInteger i =0; i<_classInfoArray.count; i++) {
         LHTopSrollCellLayoutW*layout = _classInfoArray[i];
@@ -48,13 +54,21 @@
         cell.nameLab.attributedText = layout.attStr;
         cell.delegate = self;
         cell.viewTag = i;
+        if (i == _selectedIndex) {
+            NSMutableAttributedString*mutaAttStr = (NSMutableAttributedString*)cell.nameLab.attributedText;
+            [mutaAttStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, mutaAttStr.length)];
+            [mutaAttStr addAttribute:NSStrokeWidthAttributeName value:@(-4) range:NSMakeRange(0, mutaAttStr.length)];
+            
+        }
         [self.scrollView addSubview:cell];
+        [_cellArray addObject:cell];
     }
+    _flagIndex = [self lh_calculateFlagIndex];//计算flag坐标位置。
     [self clsArrConfig];
     [self lineLoc];
     [self.scrollView addSubview:self.lineView];
 
-    [self addSubview:_scrollView];
+    [self addSubview:self.scrollView];
 }
 -(NSMutableArray*)lh_layOutArrray:(NSArray*)array{
     NSMutableArray*muteArray = [NSMutableArray array];
@@ -73,14 +87,19 @@
     }
     return (width+CellPadding*(_classInfoArray.count+1));
 }
--(void)lh_reloadData{
-}
+
 -(UIView*)lineView{
     if (!_lineView) {
         _lineView = [[UIView alloc]init];
         _lineView.backgroundColor = [UIColor redColor];
     }
     return _lineView;
+}
+-(UIScrollView*)scrollView{
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc]init];
+    }
+    return _scrollView;
 }
 -(void)lineLoc{
 //    __weak typeof(self)wek = self;
@@ -137,8 +156,8 @@
 -(void)lh_didClickView:(NSInteger)viewTag{
     self.selectedIndex = viewTag;
     [self lineLoc];
-    if ([self.delegate respondsToSelector:@selector(lh_didSelectedTopbarCell:)]) {
-        [self.delegate lh_didSelectedTopbarCell:viewTag];
+    if ([self.delegate respondsToSelector:@selector(lh_didClicktTopbarCell:)]) {
+        [self.delegate lh_didClicktTopbarCell:viewTag];
     }
 }
 -(void)lh_touchBegin{
@@ -162,10 +181,70 @@
             
             lay.tx_right = (lay.zoom_right-lineMinWidth)/2;
             layNext.tx_left = lay.tx_right;
-           
-            
+        }
+        [self calculateOffX:i];
+    }
+}
+//计算标杆坐标
+-(NSInteger)lh_calculateFlagIndex{
+    if (self.scrollView.contentSize.width>self.scrollView.frame.size.width) {
+        for (NSInteger i = self.classInfoArray.count-1; i>=0; i--) {
+            LHTopSrollCellLayoutW*lay = self.classInfoArray[i];
+            if (lay.cellRect.origin.x+lay.cellRect.size.width>=self.scrollView.frame.size.width) {
+                LHTopSrollCellLayoutW*layN = self.classInfoArray[i-1];
+                if ((layN.cellRect.origin.x+layN.cellRect.size.width)<=self.scrollView.frame.size.width) {
+                    _flagIndex = i-1;
+                    break;
+                }
+            }
         }
     }
+    return _flagIndex;
+}
+//计算offX；scrollView的偏移量
+-(void)calculateOffX:(NSInteger)index{
+    LHTopSrollCellLayoutW*layout = self.classInfoArray[index];
+    NSInteger criticalIndex=_flagIndex;
+   
+    NSInteger flagIndex = criticalIndex/2;
+    if (index<=flagIndex) {
+        layout.offx=0;
+    }else if (flagIndex<index && index<self.classInfoArray.count-1-flagIndex) {
+         CGFloat offX = layout.cellRect.origin.x+layout.cellWidth/2  - self.scrollView.frame.size.width/2;
+        layout.offx = offX;
+    }else{
+        CGFloat contentWidth = [self lh_contentSizeWidth];
+        layout.offx = contentWidth - self.scrollView.frame.size.width;
+    }
+    
+}
+#pragma mark MainScrollViewDidEndDecelerating
+-(void)lh_mainSCrollDidEndDecelerating:(NSInteger)index{
+    LHTopSrollCellLayoutW* lay = self.classInfoArray[index];
+    LHTopSrollCellLayoutW*preLay = self.classInfoArray[_preSeletedIndex];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.scrollView.contentOffset = CGPointMake(lay.offx, 0);
+    }];
+    LHTopScrollCell*preCell = _cellArray[_preSeletedIndex];
+    NSMutableAttributedString*preMutaAttStr = preLay.attStr;
+    [preMutaAttStr removeAttribute:NSForegroundColorAttributeName range:NSMakeRange(0,preMutaAttStr.length )];
+    [preMutaAttStr removeAttribute:NSStrokeWidthAttributeName range:NSMakeRange(0,preMutaAttStr.length )];
+    preCell.nameLab.attributedText = preMutaAttStr;
+    
+    LHTopScrollCell*cell = _cellArray[index];
+    NSMutableAttributedString*mutaAttStr = lay.attStr;
+    [mutaAttStr addAttribute:NSForegroundColorAttributeName value:SeletedCellLabColor range:NSMakeRange(0, mutaAttStr.length)];
+    [mutaAttStr addAttribute:NSStrokeWidthAttributeName value:@(-4) range:NSMakeRange(0, mutaAttStr.length)];
+    cell.nameLab.attributedText = mutaAttStr;
+    self.preSeletedIndex = index;
+    if ([self.delegate respondsToSelector:@selector(lh_didSeleCellAtIndex:)]) {
+        [self.delegate lh_didSeleCellAtIndex:index];
+    }
+}
+
+-(void)lh_reloadData{
+    [self.scrollView removeFromSuperview];
+    [self addAllSubViews:self.frame];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

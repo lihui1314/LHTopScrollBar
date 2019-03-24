@@ -18,7 +18,7 @@
     return self;
 }
 -(void)lh_config:(LHScrollBarCellModel*)model{
-    _attStr = [[NSAttributedString alloc]initWithString:model.cellTtitle attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
+    _attStr = [[NSMutableAttributedString alloc]initWithString:model.cellTtitle attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
     _cellWidth = [self lh_computeCellWidth];
     
 }

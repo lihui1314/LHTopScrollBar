@@ -10,7 +10,7 @@
 #import "LHTopScrollBar.h"
 #import "LHScrollBarCellModel.h"
 @interface LHTopScrollBarVC ()<UIScrollViewDelegate,LHTopScrollBarDelegate>{
-    BOOL _scrollBlocking;
+    
 }
 @property(nonatomic,strong)UIScrollView*mainScrollerView;
 @property(nonatomic,strong)LHTopScrollBar *scBar;
@@ -21,7 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _scrollBlocking = NO;
     NSMutableArray*mutArr = [NSMutableArray array];
     NSArray*array = @[@{@"cellTtitle":@"红色",@"clsName":@"1"},
                       @{@"cellTtitle":@"橙sd色",@"clsName":@"2"},
@@ -37,9 +36,9 @@
         [mutArr addObject:model];
         
     }
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(lh_canDoRefreshVC:) name:@"LHDIDENDSCROLL" object:nil];
     LHTopScrollBar*bar = [[LHTopScrollBar alloc]initWithFrame:CGRectMake(10, 44, 300, 44) dataArray:mutArr delegate:self andType:LHTopScrollBarTypeNormal];
-    bar.backgroundColor = [UIColor lightGrayColor];
+    bar.backgroundColor = [UIColor groupTableViewBackgroundColor];
     _scBar = bar;
     [self.view addSubview:bar];
     
@@ -53,21 +52,29 @@
     // Do any additional setup after loading the view.
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    NSLog(@"%f",scrollView.contentOffset.x);
     CGFloat rate =  scrollView.contentOffset.x/UIScreen.mainScreen.bounds.size.width;
          [self.scBar lh_mainScrollDidScroll:rate];
 }
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
     self.scBar.selectedIndex = (NSInteger)(scrollView.contentOffset.x/UIScreen.mainScreen.bounds.size.width);
-    self.scBar.preSeletedIndex= self.scBar.selectedIndex;
+//    self.scBar.preSeletedIndex= self.scBar.selectedIndex;
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"LHDIDENDSCROLL" object:@{@"index":@(self.scBar.selectedIndex)}];
+    [self.scBar lh_mainSCrollDidEndDecelerating:self.scBar.selectedIndex];
     
 }
 #pragma mark LHTopScrollBarDelegate
--(void)lh_didSelectedTopbarCell:(NSInteger)index{
+-(void)lh_didClicktTopbarCell:(NSInteger)index{
     self.mainScrollerView.contentOffset = CGPointMake(UIScreen.mainScreen.bounds.size.width*index,0);
-    _scrollBlocking = NO;
+    [self.scBar lh_mainSCrollDidEndDecelerating:index];
 }
+
+//做刷新等相关操作
+-(void)lh_didSeleCellAtIndex:(NSInteger)seletedIndex{
+    
+}
+
+
 /*
 #pragma mark - Navigation
 
