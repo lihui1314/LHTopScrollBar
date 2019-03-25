@@ -188,16 +188,30 @@
 //计算标杆坐标
 -(NSInteger)lh_calculateFlagIndex{
     if (self.scrollView.contentSize.width>self.scrollView.frame.size.width) {
-        for (NSInteger i = self.classInfoArray.count-1; i>=0; i--) {
-            LHTopSrollCellLayoutW*lay = self.classInfoArray[i];
-            if (lay.cellRect.origin.x+lay.cellRect.size.width>=self.scrollView.frame.size.width) {
-                LHTopSrollCellLayoutW*layN = self.classInfoArray[i-1];
-                if ((layN.cellRect.origin.x+layN.cellRect.size.width)<=self.scrollView.frame.size.width) {
+        if (self.classInfoArray.count>9) {
+            for (NSInteger i =0; i<self.classInfoArray.count; i++) {
+                LHTopSrollCellLayoutW*lay = self.classInfoArray[i];
+                if (lay.cellRect.origin.x+lay.cellRect.size.width>=self.scrollView.frame.size.width) {
                     _flagIndex = i-1;
                     break;
                 }
             }
+        }else{
+            for (NSInteger i = self.classInfoArray.count-1; i>=0; i--) {
+                LHTopSrollCellLayoutW*lay = self.classInfoArray[i];
+                if (lay.cellRect.origin.x+lay.cellRect.size.width>=self.scrollView.frame.size.width) {
+                    LHTopSrollCellLayoutW*layN = self.classInfoArray[i-1];
+                    if ((layN.cellRect.origin.x+layN.cellRect.size.width)<=self.scrollView.frame.size.width) {
+                        _flagIndex = i-1;
+                        break;
+                    }
+                }
+            }
         }
+       
+    }
+    if (_flagIndex == 0) {
+        _flagIndex = self.classInfoArray.count;
     }
     return _flagIndex;
 }

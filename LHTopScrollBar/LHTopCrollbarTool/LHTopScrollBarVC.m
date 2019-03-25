@@ -27,6 +27,10 @@
                       @{@"cellTtitle":@"黄ssss蓝",@"clsName":@"3"},
                       @{@"cellTtitle":@"绿色",@"clsName":@"4"},
                       @{@"cellTtitle":@"青色",@"clsName":@"5"},
+                      @{@"cellTtitle":@"蓝色",@"clsName":@"6"},
+                      @{@"cellTtitle":@"蓝色",@"clsName":@"6"},
+                      @{@"cellTtitle":@"蓝色",@"clsName":@"6"},
+                      @{@"cellTtitle":@"蓝色",@"clsName":@"6"},
                       @{@"cellTtitle":@"蓝色",@"clsName":@"6"}
                       ];
     for (NSInteger i =0; i<array.count; i++) {
@@ -43,7 +47,7 @@
     [self.view addSubview:bar];
     
     self.mainScrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 88, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height-88-34)];
-    self.mainScrollerView.contentSize =CGSizeMake(UIScreen.mainScreen.bounds.size.width*6, self.mainScrollerView.frame.size.height-1);
+    self.mainScrollerView.contentSize =CGSizeMake(UIScreen.mainScreen.bounds.size.width*array.count, self.mainScrollerView.frame.size.height-1);
     self.mainScrollerView.pagingEnabled = YES;
     self.mainScrollerView.delegate = self;
     self.mainScrollerView.backgroundColor = [UIColor cyanColor];
