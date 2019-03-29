@@ -8,11 +8,15 @@
 #define topH = 40
 #define lineMinWidth 35
 #define CellPadding 25
+#define LineHeight 4
+#define LineHeightNorm 2
 #define SeletedCellLabColor [UIColor redColor]
+#define LineColor [UIColor redColor]
 #import "LHTopScrollBar.h"
 #import "LHButton.h"
 #import "LHScrollBarCellModel.h"
 #import "LHTopSrollCellLayoutW.h"
+#import "UIView+XWAddForRoundedCorner.h"
 @implementation LHTopScrollBar{
     CGFloat _flagIndex;
     NSMutableArray*_cellArray;
@@ -57,7 +61,7 @@
         if (i == _selectedIndex) {
             NSMutableAttributedString*mutaAttStr = (NSMutableAttributedString*)cell.nameLab.attributedText;
             [mutaAttStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, mutaAttStr.length)];
-            [mutaAttStr addAttribute:NSStrokeWidthAttributeName value:@(-4) range:NSMakeRange(0, mutaAttStr.length)];
+            [mutaAttStr addAttribute:NSStrokeWidthAttributeName value:@(-3) range:NSMakeRange(0, mutaAttStr.length)];
             
         }
         [self.scrollView addSubview:cell];
@@ -91,7 +95,8 @@
 -(UIView*)lineView{
     if (!_lineView) {
         _lineView = [[UIView alloc]init];
-        _lineView.backgroundColor = [UIColor redColor];
+        _lineView.backgroundColor = LineColor;
+       
     }
     return _lineView;
 }
@@ -103,23 +108,25 @@
 }
 -(void)lineLoc{
 //    __weak typeof(self)wek = self;
-    if (self.type ==LHTopScrollBarTypePanda) {
+    if (self.type ==LHTopScrollBarTypeNormal) {
         [UIView animateWithDuration:0.1 animations:^{
             LHTopSrollCellLayoutW*lay = self.classInfoArray[self.selectedIndex];
-            self.lineView.frame = CGRectMake(lay.cellRect.origin.x, lay.cellRect.size.height-5, lay.cellRect.size.width, 2);
+            self.lineView.frame = CGRectMake(lay.cellRect.origin.x, lay.cellRect.size.height-5,lineMinWidth, LineHeightNorm);
         }];
     }
-    if (self.type == LHTopScrollBarTypeNormal) {
+    if (self.type == LHTopScrollBarTypeSpring) {
         LHTopSrollCellLayoutW*lay = self.classInfoArray[self.preSeletedIndex];
-        LHTopSrollCellLayoutW*layNow = self.classInfoArray[self.selectedIndex];
-        CGFloat movex =
-        layNow.cellRect.origin.x+layNow.cellRect.size.width/2-(lay.cellRect.origin.x+lay.cellRect.size.width/2);
+//        LHTopSrollCellLayoutW*layNow = self.classInfoArray[self.selectedIndex];
+//        CGFloat movex =
+//        layNow.cellRect.origin.x+layNow.cellRect.size.width/2-(lay.cellRect.origin.x+lay.cellRect.size.width/2);
         if (!_viewHaveFirstInit) {
             CGFloat dx = (lay.cellRect.size.width-lineMinWidth)/2;
             CGFloat x = lay.cellRect.origin.x+dx;
-            self.lineView.frame = CGRectMake(x, lay.cellRect.size.height-5, lineMinWidth, 3);
+            self.lineView.frame = CGRectMake(x, lay.cellRect.size.height-LineHeight-2, lineMinWidth, LineHeight);
+            _lineView.layer.cornerRadius = LineHeight/2.0f;
+            _lineView.layer.masksToBounds = YES;
         }else{
-            self.lineView.transform = CGAffineTransformMakeTranslation(movex, 0);
+//            self.lineView.transform = CGAffineTransformMakeTranslation(movex, 0);
         }
         _viewHaveFirstInit =YES;
        
@@ -127,28 +134,44 @@
    
 }
 -(void)lh_mainScrollDidScroll:(CGFloat)rate{
-//    self.selectedIndex = (NSInteger)rate;
-//    CGFloat distance = 0;
-    NSLog(@"self.selectedIndex->%ld",self.selectedIndex);
-//    LHTopSrollCellLayoutW *layW = self.classInfoArray[self.selectedIndex];
-//    distance = (rate>self.selectedIndex)?layW.farFromRightCenter:layW.farFromLeftCenter;
-//    CGPoint centerP = CGPointMake(layW.cellRect.origin.x +layW.cellWidth/2, self.lineView.center.y);
-//    self.lineView.center = CGPointMake(centerP.x+(rate-self.selectedIndex)*distance, centerP.y);
-//    if (rate-self.selectedIndex>0) {
-    //整数部分
-    int index = (int)rate;
-    LHTopSrollCellLayoutW *layW = self.classInfoArray[index];
-    //小数部分
-      rate = rate - index;
-    if (rate<0.5&&rate>=0) {
-        self.lineView.transform = CGAffineTransformMakeTranslation(layW.tx_right*rate*2+layW.start, 0);
-        NSLog(@"f->%f",layW.tx_right*rate*2+layW.start);
-        NSLog(@"xx->%f",self.lineView.frame.origin.x);
-        self.lineView.transform = CGAffineTransformScale(self.lineView.transform,(layW.zoom_right/lineMinWidth-1)*rate*2+1, 1);
-    }else if(rate>0.5 && rate<=1){
-        self.lineView.transform = CGAffineTransformMakeTranslation(layW.tx_right*rate*2+layW.start, 0);
-         self.lineView.transform = CGAffineTransformScale(self.lineView.transform,layW.zoom_right/lineMinWidth-(layW.zoom_right/lineMinWidth-1)*(rate-0.5)*2, 1);
+    
+    if (self.type == LHTopScrollBarTypeNormal) {
+        self.selectedIndex = (NSInteger)rate;
+        CGFloat distance = 0;
+        LHTopSrollCellLayoutW *layW = self.classInfoArray[self.selectedIndex];
+        distance = (rate>self.selectedIndex)?layW.farFromRightCenter:layW.farFromLeftCenter;
+        CGPoint centerP = CGPointMake(layW.cellRect.origin.x +layW.cellWidth/2, self.lineView.center.y);
+        self.lineView.center = CGPointMake(centerP.x+(rate-self.selectedIndex)*distance, centerP.y);
     }
+    
+    if (self.type ==LHTopScrollBarTypeSpring) {
+        //整数部分
+        int index = (int)rate;
+        //小数部分
+        rate = rate - index;
+        
+        LHTopSrollCellLayoutW *layW = self.classInfoArray[index];
+        
+        if (rate<0.5&&rate>=0) {
+            
+            /*self.lineView.transform = CGAffineTransformMakeTranslation(layW.tx_right*rate*2+layW.start, 0);
+             self.lineView.transform = CGAffineTransformScale(self.lineView.transform,(layW.zoom_right/lineMinWidth-1)*rate*2+1, 1);*/
+            
+            NSLog(@"size.width->%f",self.lineView.frame.size.width);
+            self.lineView.frame = CGRectMake(layW.start+CellPadding, self.lineView.frame.origin.y, lineMinWidth*((layW.zoom_right/lineMinWidth-1)*rate*2+1), self.lineView.frame.size.height);
+            
+        }else if(rate>0.5 && rate<=1){
+            
+            /*self.lineView.transform = CGAffineTransformMakeTranslation(layW.tx_right*rate*2+layW.start, 0);
+             self.lineView.transform = CGAffineTransformScale(self.lineView.transform,layW.zoom_right/lineMinWidth-(layW.zoom_right/lineMinWidth-1)*(rate-0.5)*2, 1);*/
+            
+            CGFloat x = layW.start+CellPadding + (rate-0.5)*2*(layW.zoom_right-lineMinWidth);
+            CGFloat width = lineMinWidth+(1-rate)*2*(layW.zoom_right-lineMinWidth);
+            self.lineView.frame = CGRectMake(x, self.lineView.frame.origin.y,width , self.lineView.frame.size.height);
+            
+        }
+    }
+    
     
 }
 
@@ -168,6 +191,7 @@
     for (NSInteger i =0; i<self.classInfoArray.count; i++) {
         LHTopSrollCellLayoutW *lay = self.classInfoArray[i];
         lay.start = lay.cellRect.origin.x + (lay.cellRect.size.width-lineMinWidth)/2-CellPadding;
+//        NSLog(@"start->%f x->%f",lay.start,lay.cellRect.origin.x);
         NSInteger next = i+1;
         if (next<self.classInfoArray.count) {
             
@@ -248,11 +272,11 @@
     LHTopScrollCell*cell = _cellArray[index];
     NSMutableAttributedString*mutaAttStr = lay.attStr;
     [mutaAttStr addAttribute:NSForegroundColorAttributeName value:SeletedCellLabColor range:NSMakeRange(0, mutaAttStr.length)];
-    [mutaAttStr addAttribute:NSStrokeWidthAttributeName value:@(-4) range:NSMakeRange(0, mutaAttStr.length)];
+    [mutaAttStr addAttribute:NSStrokeWidthAttributeName value:@(-3) range:NSMakeRange(0, mutaAttStr.length)];
     cell.nameLab.attributedText = mutaAttStr;
     self.preSeletedIndex = index;
-    if ([self.delegate respondsToSelector:@selector(lh_didSeleCellAtIndex:)]) {
-        [self.delegate lh_didSeleCellAtIndex:index];
+    if ([self.delegate respondsToSelector:@selector(lh_didSeletCellAtIndex:)]) {
+        [self.delegate lh_didSeletCellAtIndex:index];
     }
 }
 
@@ -260,6 +284,39 @@
     [self.scrollView removeFromSuperview];
     [self addAllSubViews:self.frame];
 }
+//-(void)creatCornerRadi{
+//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.lineView.bounds cornerRadius:LineHeight/2];
+//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = self.lineView.bounds;
+//    maskLayer.path = maskPath.CGPath;
+//    self.lineView.layer.mask = maskLayer;
+//
+//}
+//-(UIImage*)lh_creatImageWith:(UIColor *)color size:(CGSize)size{
+//    size = CGSizeMake(size.width, size.height);
+//    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+//    [color set];
+//    UIRectFill(CGRectMake(0, 0, size.width, size.height));
+//    UIImage *renderImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//
+//
+//    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+//    CGContextRef ctx = UIGraphicsGetCurrentContext();
+//    UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, size.width, size.height) byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(LineHeight, LineHeight)];
+//    CGContextAddPath(ctx,path.CGPath);
+//    CGContextClip(ctx);
+//
+////    CGContextDrawPath(ctx, kCGPathFillStroke);
+//    [renderImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+//     CGContextDrawPath(ctx, kCGPathFillStroke);
+//    UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+////    finalImage = [finalImage resizableImageWithCapInsets:(UIEdgeInsetsMake(LineHeight/2, 10, LineHeight/2, 10))resizingMode:(UIImageResizingModeStretch)];
+////    finalImage = [finalImage stretchableImageWithLeftCapWidth:-4 topCapHeight:4];
+//    return finalImage;
+//
+//}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -23,16 +23,20 @@
     [super viewDidLoad];
     NSMutableArray*mutArr = [NSMutableArray array];
     NSArray*array = @[@{@"cellTtitle":@"红色",@"clsName":@"1"},
-                      @{@"cellTtitle":@"橙sd色",@"clsName":@"2"},
-                      @{@"cellTtitle":@"黄ssss蓝",@"clsName":@"3"},
-                      @{@"cellTtitle":@"绿色",@"clsName":@"4"},
+                      @{@"cellTtitle":@"橙色Orange",@"clsName":@"2"},
+                      @{@"cellTtitle":@"黄色Yellow",@"clsName":@"3"},
+                      @{@"cellTtitle":@"Green",@"clsName":@"4"},
                       @{@"cellTtitle":@"青色",@"clsName":@"5"},
-                      @{@"cellTtitle":@"蓝色",@"clsName":@"6"},
-                      @{@"cellTtitle":@"蓝色",@"clsName":@"6"},
-                      @{@"cellTtitle":@"蓝色",@"clsName":@"6"},
-                      @{@"cellTtitle":@"蓝色",@"clsName":@"6"},
-                      @{@"cellTtitle":@"蓝色",@"clsName":@"6"}
+                      @{@"cellTtitle":@"蓝色Blue",@"clsName":@"6"},
                       ];
+    NSArray*colorArray = @[[UIColor redColor],
+                           [UIColor orangeColor],
+                           [UIColor yellowColor],
+                           [UIColor greenColor],
+                           [UIColor cyanColor],
+                           [UIColor blueColor],
+                           
+                           ];
     for (NSInteger i =0; i<array.count; i++) {
         NSDictionary*dic = array[i];
         LHScrollBarCellModel*model = [[LHScrollBarCellModel alloc]init];
@@ -40,14 +44,20 @@
         [mutArr addObject:model];
         
     }
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(lh_canDoRefreshVC:) name:@"LHDIDENDSCROLL" object:nil];
-    LHTopScrollBar*bar = [[LHTopScrollBar alloc]initWithFrame:CGRectMake(10, 44, 300, 44) dataArray:mutArr delegate:self andType:LHTopScrollBarTypeNormal];
+    LHTopScrollBar*bar = [[LHTopScrollBar alloc]initWithFrame:CGRectMake(10, 44, 300, 44) dataArray:mutArr delegate:self andType:LHTopScrollBarTypeSpring];
     bar.backgroundColor = [UIColor groupTableViewBackgroundColor];
     _scBar = bar;
     [self.view addSubview:bar];
     
-    self.mainScrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 88, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height-88-34)];
+    self.mainScrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 88, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height-88)];
     self.mainScrollerView.contentSize =CGSizeMake(UIScreen.mainScreen.bounds.size.width*array.count, self.mainScrollerView.frame.size.height-1);
+    //
+    for (NSInteger i =0; i<array.count; i++) {
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(i*UIScreen.mainScreen.bounds.size.width, 0, UIScreen.mainScreen.bounds.size.width, self.mainScrollerView.frame.size.height)];
+        view.backgroundColor = colorArray[i];
+        [self.mainScrollerView addSubview:view];
+    }
+    //
     self.mainScrollerView.pagingEnabled = YES;
     self.mainScrollerView.delegate = self;
     self.mainScrollerView.backgroundColor = [UIColor cyanColor];
@@ -62,8 +72,6 @@
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
     self.scBar.selectedIndex = (NSInteger)(scrollView.contentOffset.x/UIScreen.mainScreen.bounds.size.width);
-//    self.scBar.preSeletedIndex= self.scBar.selectedIndex;
-//    [[NSNotificationCenter defaultCenter]postNotificationName:@"LHDIDENDSCROLL" object:@{@"index":@(self.scBar.selectedIndex)}];
     [self.scBar lh_mainSCrollDidEndDecelerating:self.scBar.selectedIndex];
     
 }
@@ -74,7 +82,7 @@
 }
 
 //做刷新等相关操作
--(void)lh_didSeleCellAtIndex:(NSInteger)seletedIndex{
+-(void)lh_didSeletCellAtIndex:(NSInteger)seletedIndex{
     
 }
 
