@@ -16,7 +16,6 @@
 #import "LHButton.h"
 #import "LHScrollBarCellModel.h"
 #import "LHTopSrollCellLayoutW.h"
-#import "UIView+XWAddForRoundedCorner.h"
 @implementation LHTopScrollBar{
     CGFloat _flagIndex;
     NSMutableArray*_cellArray;
