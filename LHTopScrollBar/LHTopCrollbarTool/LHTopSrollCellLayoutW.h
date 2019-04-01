@@ -24,9 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat tx_left;
 @property(nonatomic,assign)CGFloat zoom_left;
 @property(nonatomic,assign)CGFloat zoom_right;
-@property(nonatomic,assign)CGFloat start;
+@property(nonatomic,assign)CGFloat relativeStart;//用到transform时相对起点
 
-@property(nonatomic,assign)CGFloat offx;//偏移量
+@property(nonatomic,assign)CGFloat offsetX;//偏移量
 -(instancetype)initWithModel:(LHScrollBarCellModel*)model and:(NSInteger)index;
 @end
 

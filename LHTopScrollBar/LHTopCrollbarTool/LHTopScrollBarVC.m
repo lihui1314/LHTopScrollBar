@@ -28,6 +28,7 @@
                       @{@"cellTtitle":@"Green",@"clsName":@"4"},
                       @{@"cellTtitle":@"青色",@"clsName":@"5"},
                       @{@"cellTtitle":@"蓝色Blue",@"clsName":@"6"},
+                       @{@"cellTtitle":@"紫",@"clsName":@"7"}
                       ];
     NSArray*colorArray = @[[UIColor redColor],
                            [UIColor orangeColor],
@@ -35,6 +36,7 @@
                            [UIColor greenColor],
                            [UIColor cyanColor],
                            [UIColor blueColor],
+                           [UIColor purpleColor],
                            
                            ];
     for (NSInteger i =0; i<array.count; i++) {

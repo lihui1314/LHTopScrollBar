@@ -13,13 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol LHTopScrollBarDelegate <NSObject>
 -(void)lh_didClicktTopbarCell:(NSInteger)index;
 -(void)lh_didSeletCellAtIndex:(NSInteger)seletedIndex;//最终的选中目标
-@optional
--(NSInteger)numberOfCells;
--(NSString*)barTitle;
--(CGFloat)widthOfCell:(NSInteger)index;
 @end
 typedef NS_ENUM(NSInteger,LHTopScrollBarType){
-    LHTopScrollBarTypePanda,
+    LHTopScrollBarTypelineHiden,
     LHTopScrollBarTypeNormal,
     LHTopScrollBarTypeSpring
     

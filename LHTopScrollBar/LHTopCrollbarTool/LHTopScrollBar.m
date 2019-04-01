@@ -106,6 +106,9 @@
     return _scrollView;
 }
 -(void)lineLoc{
+    if (self.type == LHTopScrollBarTypelineHiden) {
+        [self.lineView removeFromSuperview];
+    }
 //    __weak typeof(self)wek = self;
     if (self.type ==LHTopScrollBarTypeNormal) {
         [UIView animateWithDuration:0.1 animations:^{
@@ -114,7 +117,7 @@
         }];
     }
     if (self.type == LHTopScrollBarTypeSpring) {
-        LHTopSrollCellLayoutW*lay = self.classInfoArray[self.preSeletedIndex];
+        LHTopSrollCellLayoutW*lay = self.classInfoArray[self.selectedIndex];
 //        LHTopSrollCellLayoutW*layNow = self.classInfoArray[self.selectedIndex];
 //        CGFloat movex =
 //        layNow.cellRect.origin.x+layNow.cellRect.size.width/2-(lay.cellRect.origin.x+lay.cellRect.size.width/2);
@@ -156,15 +159,14 @@
             /*self.lineView.transform = CGAffineTransformMakeTranslation(layW.tx_right*rate*2+layW.start, 0);
              self.lineView.transform = CGAffineTransformScale(self.lineView.transform,(layW.zoom_right/lineMinWidth-1)*rate*2+1, 1);*/
             
-            NSLog(@"size.width->%f",self.lineView.frame.size.width);
-            self.lineView.frame = CGRectMake(layW.start+CellPadding, self.lineView.frame.origin.y, lineMinWidth*((layW.zoom_right/lineMinWidth-1)*rate*2+1), self.lineView.frame.size.height);
+            self.lineView.frame = CGRectMake(layW.relativeStart+CellPadding, self.lineView.frame.origin.y, lineMinWidth*((layW.zoom_right/lineMinWidth-1)*rate*2+1), self.lineView.frame.size.height);
             
         }else if(rate>0.5 && rate<=1){
             
             /*self.lineView.transform = CGAffineTransformMakeTranslation(layW.tx_right*rate*2+layW.start, 0);
              self.lineView.transform = CGAffineTransformScale(self.lineView.transform,layW.zoom_right/lineMinWidth-(layW.zoom_right/lineMinWidth-1)*(rate-0.5)*2, 1);*/
             
-            CGFloat x = layW.start+CellPadding + (rate-0.5)*2*(layW.zoom_right-lineMinWidth);
+            CGFloat x = layW.relativeStart+CellPadding + (rate-0.5)*2*(layW.zoom_right-lineMinWidth);
             CGFloat width = lineMinWidth+(1-rate)*2*(layW.zoom_right-lineMinWidth);
             self.lineView.frame = CGRectMake(x, self.lineView.frame.origin.y,width , self.lineView.frame.size.height);
             
@@ -189,7 +191,7 @@
 -(void)clsArrConfig{
     for (NSInteger i =0; i<self.classInfoArray.count; i++) {
         LHTopSrollCellLayoutW *lay = self.classInfoArray[i];
-        lay.start = lay.cellRect.origin.x + (lay.cellRect.size.width-lineMinWidth)/2-CellPadding;
+        lay.relativeStart = lay.cellRect.origin.x + (lay.cellRect.size.width-lineMinWidth)/2-CellPadding;
 //        NSLog(@"start->%f x->%f",lay.start,lay.cellRect.origin.x);
         NSInteger next = i+1;
         if (next<self.classInfoArray.count) {
@@ -211,7 +213,7 @@
 //计算标杆坐标
 -(NSInteger)lh_calculateFlagIndex{
     if (self.scrollView.contentSize.width>self.scrollView.frame.size.width) {
-        if (self.classInfoArray.count>9) {
+        /*if (self.classInfoArray.count>9) {
             for (NSInteger i =0; i<self.classInfoArray.count; i++) {
                 LHTopSrollCellLayoutW*lay = self.classInfoArray[i];
                 if (lay.cellRect.origin.x+lay.cellRect.size.width>=self.scrollView.frame.size.width) {
@@ -230,7 +232,27 @@
                     }
                 }
             }
+        }*/
+        NSInteger lowerBound = 0;
+        NSInteger upperBound = self.classInfoArray.count;
+        CGFloat scWidth = self.scrollView.frame.size.width;
+        while (lowerBound <=upperBound ){
+            NSInteger midIndex = lowerBound + (upperBound - lowerBound) / 2;
+            LHTopSrollCellLayoutW *lay = self.classInfoArray[midIndex];
+            LHTopSrollCellLayoutW*nextLay = self.classInfoArray[midIndex+1];
+            CGFloat layXloc = lay.cellRect.origin.x+lay.cellWidth;
+            CGFloat layXnextLoc = nextLay.cellRect.origin.x+nextLay.cellWidth;
+            if (layXloc<=scWidth&&layXnextLoc>scWidth) {
+                _flagIndex = midIndex;
+                break;
+            }else if (layXloc>scWidth){
+                upperBound = midIndex-1;
+            }else if(layXloc<scWidth){
+                lowerBound = midIndex+1;
+            }
+            
         }
+        
        
     }
     if (_flagIndex == 0) {
@@ -238,6 +260,7 @@
     }
     return _flagIndex;
 }
+
 //计算offX；scrollView的偏移量
 -(void)calculateOffX:(NSInteger)index{
     LHTopSrollCellLayoutW*layout = self.classInfoArray[index];
@@ -245,13 +268,13 @@
    
     NSInteger flagIndex = criticalIndex/2;
     if (index<=flagIndex) {
-        layout.offx=0;
+        layout.offsetX=0;
     }else if (flagIndex<index && index<self.classInfoArray.count-1-flagIndex) {
          CGFloat offX = layout.cellRect.origin.x+layout.cellWidth/2  - self.scrollView.frame.size.width/2;
-        layout.offx = offX;
+        layout.offsetX = offX;
     }else{
         CGFloat contentWidth = [self lh_contentSizeWidth];
-        layout.offx = contentWidth - self.scrollView.frame.size.width;
+        layout.offsetX = contentWidth - self.scrollView.frame.size.width;
     }
     
 }
@@ -260,7 +283,7 @@
     LHTopSrollCellLayoutW* lay = self.classInfoArray[index];
     LHTopSrollCellLayoutW*preLay = self.classInfoArray[_preSeletedIndex];
     [UIView animateWithDuration:0.2 animations:^{
-        self.scrollView.contentOffset = CGPointMake(lay.offx, 0);
+        self.scrollView.contentOffset = CGPointMake(lay.offsetX, 0);
     }];
     LHTopScrollCell*preCell = _cellArray[_preSeletedIndex];
     NSMutableAttributedString*preMutaAttStr = preLay.attStr;
@@ -325,3 +348,4 @@
 */
 
 @end
+
