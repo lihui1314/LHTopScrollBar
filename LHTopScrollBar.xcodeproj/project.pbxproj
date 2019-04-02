@@ -122,7 +122,7 @@
 		9C19686C222CCDB500B90A86 /* LHTopScrollBar */ = {
 			isa = PBXGroup;
 			children = (
-				9CB7A0222239062A0091D661 /* LHTopCrollbarTool */,
+				9CB7A0222239062A0091D661 /* LHTopScrollbarTool */,
 				9C19686D222CCDB500B90A86 /* AppDelegate.h */,
 				9C19686E222CCDB500B90A86 /* AppDelegate.m */,
 				9C196870222CCDB500B90A86 /* ViewController.h */,
@@ -154,7 +154,7 @@
 			path = LHTopScrollBarUITests;
 			sourceTree = "<group>";
 		};
-		9CB7A0222239062A0091D661 /* LHTopCrollbarTool */ = {
+		9CB7A0222239062A0091D661 /* LHTopScrollbarTool */ = {
 			isa = PBXGroup;
 			children = (
 				9C19689F222CCDF300B90A86 /* LHTopScrollBarVC.h */,
@@ -172,7 +172,7 @@
 				9CF1407E2239FC4500288FE8 /* LHTopSrollCellLayoutW.h */,
 				9CF1407F2239FC4500288FE8 /* LHTopSrollCellLayoutW.m */,
 			);
-			path = LHTopCrollbarTool;
+			path = LHTopScrollbarTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

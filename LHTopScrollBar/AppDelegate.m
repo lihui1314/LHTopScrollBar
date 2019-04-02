@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "LHTopCrollbarTool/LHTopScrollBarVC.h"
+#import "LHTopScrollBarVC.h"
 
 @interface AppDelegate ()
 
