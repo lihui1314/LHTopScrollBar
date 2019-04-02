@@ -5,7 +5,7 @@
 //  Created by 李辉 on 2019/3/4.
 //  Copyright © 2019 李辉. All rights reserved.
 //
-
+#define iPhoneX [UIScreen mainScreen].bounds.size.height>736
 #import "LHTopScrollBarVC.h"
 #import "LHTopScrollBar.h"
 #import "LHScrollBarCellModel.h"
@@ -38,8 +38,9 @@
         [mutArr addObject:model];
         
     }
+    CGFloat y = iPhoneX?44:20;
     /*LHTopScrollBar*bar = [[LHTopScrollBar alloc]initWithFrame:CGRectMake(10, 44, 300, 44) dataArray:mutArr delegate:self andType:LHTopScrollBarTypeNormal];*/
-    LHTopScrollBar*bar = [[LHTopScrollBar alloc]initWithFrame:CGRectMake(10, 44, 300, 44)];
+    LHTopScrollBar*bar = [[LHTopScrollBar alloc]initWithFrame:CGRectMake(0,y, 320, 44)];
     [self.view addSubview:bar];
     bar.delegate = self;
     bar.type = LHTopScrollBarTypeSpring;
@@ -58,7 +59,7 @@
                            [UIColor purpleColor],
                            
                            ];
-    self.mainScrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 88, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height-88)];
+    self.mainScrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_scBar.frame), UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height-y-_scBar.frame.size.height)];
     self.mainScrollerView.contentSize =CGSizeMake(UIScreen.mainScreen.bounds.size.width*array.count, self.mainScrollerView.frame.size.height-1);
     //
     for (NSInteger i =0; i<array.count; i++) {
@@ -94,6 +95,7 @@
 //做刷新等相关操作
 -(void)lh_didSeletCellAtIndex:(NSInteger)seletedIndex{
     NSLog(@"Do STH");
+    
 }
 
 
