@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    /******LHTopScrollBar******/
     NSMutableArray*mutArr = [NSMutableArray array];
     NSArray*array = @[@{@"cellTtitle":@"红色",@"clsName":@"1"},
                       @{@"cellTtitle":@"橙色Orange",@"clsName":@"2"},
@@ -30,6 +31,24 @@
                       @{@"cellTtitle":@"蓝色Blue",@"clsName":@"6"},
                        @{@"cellTtitle":@"紫",@"clsName":@"7"}
                       ];
+    for (NSInteger i =0; i<array.count; i++) {
+        NSDictionary*dic = array[i];
+        LHScrollBarCellModel*model = [[LHScrollBarCellModel alloc]init];
+        [model setValuesForKeysWithDictionary:dic];
+        [mutArr addObject:model];
+        
+    }
+    /*LHTopScrollBar*bar = [[LHTopScrollBar alloc]initWithFrame:CGRectMake(10, 44, 300, 44) dataArray:mutArr delegate:self andType:LHTopScrollBarTypeNormal];*/
+    LHTopScrollBar*bar = [[LHTopScrollBar alloc]initWithFrame:CGRectMake(10, 44, 300, 44)];
+    [self.view addSubview:bar];
+    bar.delegate = self;
+    bar.type = LHTopScrollBarTypeSpring;
+    bar.clsModelArray = mutArr;
+    bar.selectedIndex = 2;
+    bar.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    _scBar = bar;
+    
+    /*****MainScrollView*****/
     NSArray*colorArray = @[[UIColor redColor],
                            [UIColor orangeColor],
                            [UIColor yellowColor],
@@ -39,18 +58,6 @@
                            [UIColor purpleColor],
                            
                            ];
-    for (NSInteger i =0; i<array.count; i++) {
-        NSDictionary*dic = array[i];
-        LHScrollBarCellModel*model = [[LHScrollBarCellModel alloc]init];
-        [model setValuesForKeysWithDictionary:dic];
-        [mutArr addObject:model];
-        
-    }
-    LHTopScrollBar*bar = [[LHTopScrollBar alloc]initWithFrame:CGRectMake(10, 44, 300, 44) dataArray:mutArr delegate:self andType:LHTopScrollBarTypeSpring];
-    bar.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    _scBar = bar;
-    [self.view addSubview:bar];
-    
     self.mainScrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 88, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height-88)];
     self.mainScrollerView.contentSize =CGSizeMake(UIScreen.mainScreen.bounds.size.width*array.count, self.mainScrollerView.frame.size.height-1);
     //
@@ -67,6 +74,7 @@
     [self.view addSubview:self.mainScrollerView];
     // Do any additional setup after loading the view.
 }
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat rate =  scrollView.contentOffset.x/UIScreen.mainScreen.bounds.size.width;
          [self.scBar lh_mainScrollDidScroll:rate];
@@ -85,7 +93,7 @@
 
 //做刷新等相关操作
 -(void)lh_didSeletCellAtIndex:(NSInteger)seletedIndex{
-    
+    NSLog(@"Do STH");
 }
 
 

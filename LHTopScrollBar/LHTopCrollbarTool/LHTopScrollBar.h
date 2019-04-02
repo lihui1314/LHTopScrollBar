@@ -16,12 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 typedef NS_ENUM(NSInteger,LHTopScrollBarType){
     LHTopScrollBarTypelineHiden,
+    LHTopScrollBarTypeLineEqCellWidth,
     LHTopScrollBarTypeNormal,
     LHTopScrollBarTypeSpring
     
 };
 @interface LHTopScrollBar : UIView<UIScrollViewDelegate,LHTouchViewDelegate>
-@property(nonatomic,strong)NSMutableArray*classInfoArray;
+@property(nonatomic,strong)NSMutableArray*clsModelArray;
 @property(nonatomic,strong)UIScrollView*scrollView;
 @property(nonatomic,weak)id<LHTopScrollBarDelegate>delegate;
 @property(nonatomic,strong)UIView *lineView;
@@ -30,7 +31,7 @@ typedef NS_ENUM(NSInteger,LHTopScrollBarType){
 @property(nonatomic,assign)BOOL viewHaveFirstInit;
 @property(nonatomic,assign)LHTopScrollBarType type;
 -(void)lh_reloadData;
--(instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray*)array delegate:(id)delegate andType:(LHTopScrollBarType)type;
+-(instancetype)initWithFrame:(CGRect)frame dataArray:(nullable NSArray*)array delegate:(nullable id)delegate andType:(LHTopScrollBarType)type;
 -(void)lh_mainScrollDidScroll:(CGFloat)rate;
 -(void)lh_mainSCrollDidEndDecelerating:(NSInteger)index;
 @end
